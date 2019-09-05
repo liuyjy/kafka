@@ -1,0 +1,42 @@
+server:
+    port: 7016
+#kafka相关配置
+spring:
+    kafka:
+       # kafka集群配置
+       bootstrap-servers: 10.0.164.19:9092,10.0.164.23:9092,10.0.164.27:9092
+       # 配置生产者
+       producer:
+          # 重试次数
+          retries: 5
+          # 每次批量发送消息的数量
+          batch-size: 65536
+          buffer-memory: 524288
+          key-serializer: org.apache.kafka.common.serialization.StringSerializer
+          value-serializer: org.apache.kafka.common.serialization.StringSerializer
+       # 配置消费者
+       consumer:
+          group-id: 66
+          #key-value序列化反序列化
+          key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    devtools:
+       restart:
+          #热部署生效
+          enabled: true
+          #设置重启的目录
+          additional-paths: src/main/java
+          # 应该从触发完全重启中排除的目录
+          exclude: resources/**,static/**,WEB-INF/**
+          # trigger-file: 指指定文件的名称，当更改该文件时，将触发重启检查。如果没有指定，任何类路径文件更改都会触发重启。
+
+    # 文件上传配置
+    servlet:
+       multipart:
+          # 是否启用spring MVC 部分上传功能
+          enabled: true
+          # 限制单个文件最大大小,这里设置为100MB
+          max-file-size: 100MB
+          # 限制所有文件最大大小,这里设置为500MB
+          max-request-size: 500MB
