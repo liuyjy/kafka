@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <hutool>4.1.10</hutool>
+        <hutool>4.1.12</hutool>
         <lombok>1.18.6</lombok>
         <json>1.2.56</json>
     </properties>
